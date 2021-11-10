@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="CSS/style.css">
+	<title>Tienda La Generica - Bogota</title>
+  <style>
+    .container{
+        max-width: 960px;
+    }
+  </style>
+</head>
+  <body>
+    <div>
+      <img src="/IMG/header.png"class="img-fluid" alt="Tienda La Generica - Bogota">
+    </div>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <form action="/productos" method="GET">
+          <input class="btnProductos" type="submit" name="btnProductos" id="btnProductos" value="btnProductos">
+        </form>
+      </li>
+      <li class="nav-item">
+        <form action="/clientes" method="GET">
+          <input class="btnClientes" type="submit" name="btnClientes" id="btnClientes" value="btnClientes">
+        </form>
+      </li>
+      <li class="nav-item">
+        <input class="btnVentas" type="submit" name="btnVentas" id="btnVentas" value="btnVentas">
+      </li>
+      <li class="nav-item">
+        <form action="/reportes" method="GET">
+          <input class="btnReportes" type="submit" name="btnReportes" id="btnReportes" value="btnReportes">
+       </form>
+      </li>
+      <li class="nav-item">
+        <input class="btnConsolidados" type="submit" name="btnConsolidados" id="btnConsolidados" value="btnConsolidados">
+      </li>
+      <li class="nav-item">
+        <form action="/login" method="GET">
+          <input class="btnSalir" type="submit" name="btnSalir" id="btnSalir" value="btnSalir">
+        </form>
+      </li>
+    </ul>
+    
+    <div class="container">
+
+      <figure class="text-center">
+        <blockquote class="blockquote">
+          <h1>Reportes</h1>
+        </blockquote>
+      </figure>
+
+      <form class="row gy-2 gx-3 align-items-center">
+        <div class="col">
+          <input class="btnListadoClientes"  type="submit" name="btnListadoClientes" id="btnListadoClientes" value="btnListadoClientes">
+        </div>
+        <div class="col">
+          <input class="btnVentasCliente" type="submit" name="btnVentasCliente" id="btnVentasCliente" value="btnVentasCliente">
+        </div>
+      </form>
+      
+      <div id="modalCliente" class="modal fade" tabindex="-1" aria-labelledby="modalCliente" aria-hiden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">Listado Clientes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table id="tablaClientes" class="table mt-6">
+              <thead>
+                <tr>
+                  <th>Cedula</th>
+                  <th>Nombre</th>
+                  <th>Telefono</th>
+                  <th>Correo Electronico</th>
+                  <th>Direccion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% clientes.forEach((cliente) => {%>
+                  <tr>
+                    <td><%=cliente._id%></td>
+                    <td><%=cliente.nombre_clientes%></td>
+                    <td><%=cliente.telefono_clientes%></td>
+                    <td><%=cliente.email_clientes%></td>
+                    <td><%=cliente.direccion_clientes%></td>
+                  </tr>
+                  <% })%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+       
+    <script type="text/javascript">document.oncontextmenu = function(){return false;}</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="JS/codereportes.js"></script>
+  </body>
+</html>
