@@ -1,0 +1,20 @@
+_id,ivacompra_productos,nitproveedor_productos,nombre_productos,precio_compra_productos,precio_venta_productos
+1,19,1,Melocotones,25505,30351
+2,19,3,Manzanas,18108,21549
+3,19,4,Plátanos,29681,35320
+4,19,3,Lechuga,29788,35448
+5,19,1,Tomates,12739,15159
+6,19,1,Calabaza,21315,25365
+7,19,2,Apio,19249,22906
+8,19,2,Pepino,10958,13040
+9,19,2,Champiñones,11046,13145
+10,19,5,Leche,21150,25169
+11,19,5,Queso,26571,31619
+12,19,2,Huevos,12445,14810
+13,19,1,Requesón,14329,17052
+14,19,1,Crema agria,14856,17679
+15,19,5,Yogur,14941,17780
+16,19,5,Ternera,29335,34909
+17,19,5,Salmón salvaje,11878,14135
+18,19,1,Patas de cangrejo,29951,35642
+

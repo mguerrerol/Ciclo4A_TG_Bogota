@@ -5,7 +5,10 @@ const loginController = require('../controllers/loginController')
 
 //mapping cargar login
 router.get('/login', loginController.cargar)
+//router.get('/login', (req,res)=>{
+//    res.render('login',{alert:false})
+//})
 
-router.post('/login/validar', loginController.validar)
+router.post('/login', loginController.login)
 
 module.exports = router

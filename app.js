@@ -1,10 +1,15 @@
+const path=require('path');
 const express = require('express')
 const db = require('./db')
 const app = express()
+const morgan=require('morgan')
 
+//app.use(morgan('app'))
+
+app.set('views', __dirname + '\\views');
 app.set('view engine', 'ejs')
 
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
@@ -17,6 +22,12 @@ app.use(clientes)
 
 const productos = require('./routes/productos')
 app.use(productos)
+
+const ventas = require('./routes/ventas')
+app.use(ventas)
+
+const consolidados = require('./routes/consolidados')
+app.use(consolidados)
 
 const login = require('./routes/login')
 app.use(login)

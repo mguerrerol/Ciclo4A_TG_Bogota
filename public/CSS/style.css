@@ -30,6 +30,7 @@ body {
     padding: 15px;
     background-color: #ff6600;
     border: 0px;
+    border-radius: 0px;
     box-sizing: border-box;
     cursor: pointer;
     font-weight: bold;
@@ -46,6 +47,30 @@ body {
 .btn-crear:focus{
     box-shadow: 0 0 0 3px rgba(121,82,179,0.25);
 }
+
+.btn-consultar{
+    width: 100%;
+    padding: 15px;
+    background-color: #ff6600;
+    border: 0px;
+    border-radius: 0px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    color: #000000;
+}
+
+.btn-consultar:hover,.btn-guardar:active{
+    color:rgb(0, 0, 0);
+    background-color: #ffb07c;
+    border-color: #ffb07c;
+}
+
+.btn-consultar:focus{
+    box-shadow: 0 0 0 3px rgba(121,82,179,0.25);
+}
+
 
 .Shadow-lg{
     background: #D0702E;
@@ -70,7 +95,6 @@ input[type=number] {
 
 input[type=text] {
 	width: 100%;
-
 	padding: 0.6em;
 	font-size: 1.1em;
 	color: black;
@@ -227,37 +251,45 @@ input[type=submit].btnCargar {
     background-position: center;
     transition: all 0.5s;
     margin-top:20px;
-   }
+}
 
-   input[type=submit].btnListadoClientes {
-    background-image: url("../IMG/listadoclientes.png");
-    background-size: cover;
-    background-position: center;
-    transition: all 0.5s;
-    margin-right:10px;
-    width: 90%;
-    height: 75px;
-    border-radius:5px;
-   }
-   
-   input[type=submit].btnListadoClientes:hover {
-       width: 95%;
-       transition: all .9s ease;
-   }
-   
-   input[type=submit].btnVentasCliente {
-    background-image: url("../IMG/ventascliente.png");
-    background-size: cover;
-    background-position: center;
+img.btnListadoClientes {
     transition: all 0.5s;
     margin-right:10px;
     width:  90%;	
-    height: 75px;
+    height: auto;
     border-radius:5px;
-   }
+}
    
-   input[type=submit].btnVentasCliente:hover {
-       width: 95%;
-       transition: all .9s ease;
-   }
+img.btnListadoClientes:hover {
+    width: 95%;
+    transition: all .9s ease;
+}
    
+img.btnVentasCliente {
+   transition: all 0.5s;
+    margin-right:10px;
+    width:  90%;	
+    height: auto;
+    border-radius:5px;
+}
+   
+img.btnVentasCliente:hover {
+    width: 95%;
+    transition: all .9s ease;
+}
+
+input[type=submit].btn {
+    display: inline-block;
+	width: 200px;
+	height: 48px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	padding: 0px 10px;
+	border-radius: 0px;
+	border: 0;
+	color: #ffffff;
+	background: #D0702E;
+	font-size:15px;
+}

@@ -3,13 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="CSS/style.css">
 	<title>Tienda La Generica - Bogota</title>
   <style>
     .container{
-        max-width: 960px;
+      max-width: 1050px;
     }
   </style>
 </head>
@@ -30,7 +32,9 @@
         </form>
       </li>
       <li class="nav-item">
-        <input class="btnVentas" type="submit" name="btnVentas" id="btnVentas" value="btnVentas">
+        <form action="/ventas" method="GET">
+          <input class="btnVentas" type="submit" name="btnVentas" id="btnVentas" value="btnVentas">
+        </form>
       </li>
       <li class="nav-item">
         <form action="/reportes" method="GET">
@@ -38,15 +42,17 @@
        </form>
       </li>
       <li class="nav-item">
-        <input class="btnConsolidados" type="submit" name="btnConsolidados" id="btnConsolidados" value="btnConsolidados">
+        <form action="/consolidados" method="GET">
+          <input class="btnConsolidados" type="submit" name="btnConsolidados" id="btnConsolidados" value="btnConsolidados">
+        </form>
       </li>
       <li class="nav-item">
         <form action="/login" method="GET">
           <input class="btnSalir" type="submit" name="btnSalir" id="btnSalir" value="btnSalir">
         </form>
       </li>
-      
     </ul>
+    
     <div class="container">
 
       <div class="Shadow-lg pb-3 md-5 bg-body rounded">
@@ -56,39 +62,46 @@
             <h1>Clientes</h1>
           </blockquote>
         </figure>
-
         
         <form action="/clientes/crear" method="POST">
-
-          <div>
-            <label class="form-label" for="txtCedula">Cedula</label>
-            <input class="form-control" type="number" name="txtCedula" id="txtCedula" maxlength="20" required>
-          </div>
-
-          <div>
-            <label class="form-label" for="txtNombre">Nombre Completo </label>
-            <input class="form-control" type="text" name="txtNombre" id="txtNombre" maxlength="50">
-          </div>
-          
-          <div>
-          <label class="form-label" for="txtTelefono">Teléfono</label> 
-          <input class="form-control" type="number" name="txtTelefono" id="txtTelefono" maxlength="20" >
-          </div>
-          
-          <div>
-            <label class="form-label" for="txtCorreo">Correo Electrónico </label>
-            <input class="form-control" type="email" name="txtCorreo" id="txtCorreo"	maxlength="50">
-          </div>
-
-          <div>
-            <label class="form-label" for="txtDireccion">Dirección </label>
-            <input class="form-control" type="text" name="txtDireccion" id="txtDireccion" maxlength="50">
-          </div>
+          <table class="table mt-2">
+            <tbody>
+              <tr>
+                <td>
+                  <label class="form-label" for="txtCedula">Cedula</label>
+                  <input class="form-control" type="number" name="txtCedula" id="txtCedula" maxlength="20" required>
+                </td>
+                <td>
+                  <label class="form-label" for="txtCorreo">Correo Electrónico </label>
+                  <input class="form-control" type="email" name="txtCorreo" id="txtCorreo"	maxlength="50" required>
+                </td>
+              </tr>  
+              <tr>
+                <td>
+                  <label class="form-label" for="txtNombre">Nombre Completo </label>
+                  <input class="form-control" type="text" name="txtNombre" id="txtNombre" maxlength="50" required>
+                </td>
+                <td>
+                  <label class="form-label" for="txtDireccion">Dirección </label>
+                  <input class="form-control" type="text" name="txtDireccion" id="txtDireccion" maxlength="50" required>
+               </td>
+              </tr>  
+              <tr>
+                <td>
+                  <label class="form-label" for="txtTelefono">Teléfono</label> 
+                  <input class="form-control" type="number" name="txtTelefono" id="txtTelefono" maxlength="20" required>
+                </td>
+              </tr> 
+            </table>          
       </div> 
-        <button type="submit" class="w-100 btn btn-crear btn-lg"><i class="bi bi-save"></i> Crear Cliente</button>
+      
+      <table class="table mt-2">
+              <button type="submit" class="w-100 btn btn-crear btn-lg"><i class="bi bi-save"></i> Crear Cliente</button>
+        
+      </table>
       </form>
        
-        <table id="tablaClientes" class="table mt-6">
+        <table id="tablaClientes" class="table mt-6 table-secondary table-striped">
           <thead>
             <tr>
               <th>Cedula</th>
@@ -109,7 +122,8 @@
                 <td><%=cliente.direccion_clientes%></td>
                 <td>
                   <a type="button" class="btnEditar btn btn-outline-primary bi bi-pencil"></a>
-                  <a href="/clientes/eliminar/<%=cliente._id%>" class="btn btn-outline-danger bi bi-trash"></a>
+                  <!-- <a href="/clientes/eliminar/<%=cliente._id%>" onclick="return confirm('¿Esta seguro de querer eliminar el cliente?');" class="btn btn-outline-danger bi bi-trash"></a> -->
+                  <a  onclick="confirmar(<%=cliente._id%>)" class="btn btn-outline-danger bi bi-trash"></a> 
                 </td>
               </tr>
               <% })%>
@@ -129,22 +143,22 @@
                <input type="number" name="txtCedula_editar" id="txtCedula_editar" hidden>
               <div class="mb-3">
                 <label class="form-label" for="txtNombre">Nombre Completo </label>
-                <input class="form-control" type="text" name="txtNombre_editar" id="txtNombre_editar" maxlength="50">
+                <input class="form-control" type="text" name="txtNombre_editar" id="txtNombre_editar" maxlength="50" required>
               </div>
               
               <div class="mb-3">
               <label class="form-label" for="txtTelefono">Teléfono</label> 
-              <input class="form-control" type="number" name="txtTelefono_editar" id="txtTelefono_editar" maxlength="20" >
+              <input class="form-control" type="number" name="txtTelefono_editar" id="txtTelefono_editar" maxlength="20" required>
               </div>
               
               <div class="mb-3">
                 <label class="form-label" for="txtCorreo">Correo Electrónico </label>
-                <input class="form-control" type="email" name="txtCorreo_editar" id="txtCorreo_editar"	maxlength="50">
+                <input class="form-control" type="email" name="txtCorreo_editar" id="txtCorreo_editar"	maxlength="50" required>
               </div>
     
               <div class="mb-3">
                 <label class="form-label" for="txtDireccion">Dirección </label>
-                <input class="form-control" type="text" name="txtDireccion_editar" id="txtDireccion_editar" maxlength="50">
+                <input class="form-control" type="text" name="txtDireccion_editar" id="txtDireccion_editar" maxlength="50" required>
               </div> 
 
           </div>
@@ -156,8 +170,32 @@
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script type="text/javascript">document.oncontextmenu = function(){return false;}</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/codeclientes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script> 
+    <script >
+      $(document).ready(function() {
+      $('#tablaClientes').DataTable({
+          "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "lengthMenu": "Muestra _MENU_ registros por pagina",
+            "zeroRecords": "No hay registros en la tabla",
+            "info": "Mostrando Pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros en la tabla",
+            "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+            "search": "Buscar: ",
+            "paginate": {
+            "next": "Siguiente Pagina",
+            "previous": "Pagina Anterior"
+          }
+        }
+      });
+    });
+    </script>
   </body>
 </html>

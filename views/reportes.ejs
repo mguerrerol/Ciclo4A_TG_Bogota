@@ -3,13 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="CSS/style.css">
 	<title>Tienda La Generica - Bogota</title>
   <style>
     .container{
-        max-width: 960px;
+      max-width: 1050px;
     }
   </style>
 </head>
@@ -23,14 +25,16 @@
         <form action="/productos" method="GET">
           <input class="btnProductos" type="submit" name="btnProductos" id="btnProductos" value="btnProductos">
         </form>
-      </li>
+        </li>
       <li class="nav-item">
         <form action="/clientes" method="GET">
           <input class="btnClientes" type="submit" name="btnClientes" id="btnClientes" value="btnClientes">
         </form>
       </li>
       <li class="nav-item">
-        <input class="btnVentas" type="submit" name="btnVentas" id="btnVentas" value="btnVentas">
+        <form action="/ventas" method="GET">
+          <input class="btnVentas" type="submit" name="btnVentas" id="btnVentas" value="btnVentas">
+        </form>
       </li>
       <li class="nav-item">
         <form action="/reportes" method="GET">
@@ -38,7 +42,9 @@
        </form>
       </li>
       <li class="nav-item">
-        <input class="btnConsolidados" type="submit" name="btnConsolidados" id="btnConsolidados" value="btnConsolidados">
+        <form action="/consolidados" method="GET">
+          <input class="btnConsolidados" type="submit" name="btnConsolidados" id="btnConsolidados" value="btnConsolidados">
+        </form>
       </li>
       <li class="nav-item">
         <form action="/login" method="GET">
@@ -57,51 +63,61 @@
 
       <form class="row gy-2 gx-3 align-items-center">
         <div class="col">
-          <input class="btnListadoClientes"  type="submit" name="btnListadoClientes" id="btnListadoClientes" value="btnListadoClientes">
+          <a style='cursor: pointer;' onClick="muestra_ocultaclientes('clientes')" title=""><img src="/IMG/listadoclientes.png" class="btnListadoClientes" alt="Listado Clientes"></a>
+          <!-- <input class="btnListadoClientes" onclick="reporteclientes();" type="submit" name="btnListadoClientes" id="btnListadoClientes" value="btnListadoClientes"> -->
         </div>
         <div class="col">
-          <input class="btnVentasCliente" type="submit" name="btnVentasCliente" id="btnVentasCliente" value="btnVentasCliente">
+          <a style='cursor: pointer;' onClick="muestra_ocultaventas('ventas')" title=""><img src="/IMG/ventascliente.png" class="btnVentasCliente" alt="Listado Ventas por cliente"></a>
+          <!-- <input class="btnVentasCliente" onclick="reporteventas();" type="submit" name="btnVentasCliente" id="btnVentasCliente" value="btnVentasCliente"> -->
         </div>
       </form>
-      
-      <div id="modalCliente" class="modal fade" tabindex="-1" aria-labelledby="modalCliente" aria-hiden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">Listado Clientes</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <table id="tablaClientes" class="table mt-6">
-              <thead>
-                <tr>
-                  <th>Cedula</th>
-                  <th>Nombre</th>
-                  <th>Telefono</th>
-                  <th>Correo Electronico</th>
-                  <th>Direccion</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% clientes.forEach((cliente) => {%>
-                  <tr>
-                    <td><%=cliente._id%></td>
-                    <td><%=cliente.nombre_clientes%></td>
-                    <td><%=cliente.telefono_clientes%></td>
-                    <td><%=cliente.email_clientes%></td>
-                    <td><%=cliente.direccion_clientes%></td>
-                  </tr>
-                  <% })%>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+
+      <div id="clientes">
+      <table id="tablaClientes" class="table mt-6">
+        <thead>
+          <tr>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Correo Electronico</th>
+            <th>Direccion</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% clientes.forEach((cliente) => {%>
+          <tr>
+            <td><%=cliente._id%></td>
+            <td><%=cliente.nombre_clientes%></td>
+            <td><%=cliente.telefono_clientes%></td>
+            <td><%=cliente.email_clientes%></td>
+            <td><%=cliente.direccion_clientes%></td>
+          </tr>
+        <% })%>
+        </tbody>
+      </table>
     </div>
-      
-       
+
+    <div id="ventas">
+      <table id="tablaVentas" class="table mt-6">
+        <thead>
+          <tr>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Ventas</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>   
     <script type="text/javascript">document.oncontextmenu = function(){return false;}</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="JS/codereportes.js"></script>
+    <script src="JS/codereportes.js"></script> 
+
+   
   </body>
 </html>
