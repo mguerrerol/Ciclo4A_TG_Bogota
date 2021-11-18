@@ -63,7 +63,7 @@
           </blockquote>
         </figure>
         
-        <form action="/clientes/crear" method="POST">
+        <form id="form" action="/clientes/crear" method="POST">
           <table class="table mt-2">
             <tbody>
               <tr>
@@ -101,7 +101,7 @@
       </table>
       </form>
        
-        <table id="tablaClientes" class="table mt-6 table-secondary table-striped">
+        <table id="tablaClientes" class="display" style="text-align: center;">
           <thead>
             <tr>
               <th>Cedula</th>
@@ -139,7 +139,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="/clientes/modificar" method="POST">
+            <form id="form" action="/clientes/modificar" method="POST">
                <input type="number" name="txtCedula_editar" id="txtCedula_editar" hidden>
               <div class="mb-3">
                 <label class="form-label" for="txtNombre">Nombre Completo </label>

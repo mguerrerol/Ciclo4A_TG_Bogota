@@ -27,12 +27,9 @@ module.exports.login = async (req, res)=>{
                 timer:false,
                 ruta:'login'
             })
-        }
-        
+        } 
     } catch (error) {
         console.log(error)
     }
-   
-   
 }
 

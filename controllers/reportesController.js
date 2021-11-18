@@ -4,7 +4,7 @@ const Ventas = require('../model/Ventas')
 const Venta = require('../model/Ventas')
 
 //cargar pagina reportes
-module.exports.cargar = (req, res)=>{
+module.exports.cargar1 = (req, res)=>{
     Cliente.find({},(error, clientes)=>{
         if(error){
             return res.status(500).json({
@@ -16,4 +16,23 @@ module.exports.cargar = (req, res)=>{
     })
 }
 
-
+module.exports.cargar = (req, res)=>{
+    Cliente.find({},(error, clientes)=>{
+        if(error){
+            return res.status(500).json({
+                message: 'Error mostrando los clientes'
+            })
+        }
+        
+        Ventas.find({},(error, ventas)=>{
+            if(error){
+                return res.status(500).json({
+                    message: 'Error mostrando las ventas'
+                })
+            }
+            //console.log(clientes)
+            //console.log(ventas)
+            return res.render('reportes',{clientes: clientes, ventas: ventas})
+        })
+    })
+}

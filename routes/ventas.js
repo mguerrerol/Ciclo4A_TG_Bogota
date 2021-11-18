@@ -6,7 +6,7 @@ const ventasController = require('../controllers/ventasController')
 //mapping cargar ventas
 router.get('/ventas', ventasController.cargar)
 
-router.get('/ventas/cedulacliente',ventasController.cedulacliente)
+router.post('/ventas/cedulacliente',ventasController.cedulacliente)
 
 //mapping registrar ventas
 router.post('/ventas/registrar', ventasController.registrar)

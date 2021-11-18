@@ -8,6 +8,7 @@ const on = (element, event, selector, handler) =>{
     })
 }
 
+
 on(document, 'click', '.btnEditar', e =>{
     const fila = e.target.parentNode.parentNode
     txtCedula_editar.value = fila.children[0].innerHTML

@@ -1,13 +1,13 @@
 _id,ivacompra_productos,nitproveedor_productos,nombre_productos,precio_compra_productos,precio_venta_productos
 1,19,1,Melocotones,25505,30351
 2,19,3,Manzanas,18108,21549
-3,19,4,Plátanos,29681,35320
+3,19,4,Platanos,29681,35320
 4,19,3,Lechuga,29788,35448
 5,19,1,Tomates,12739,15159
 6,19,1,Calabaza,21315,25365
 7,19,2,Apio,19249,22906
 8,19,2,Pepino,10958,13040
-9,19,2,Champiñones,11046,13145
+9,19,2,Champinones,11046,13145
 10,19,5,Leche,21150,25169
 11,19,5,Queso,26571,31619
 12,19,2,Huevos,12445,14810
@@ -15,6 +15,55 @@ _id,ivacompra_productos,nitproveedor_productos,nombre_productos,precio_compra_pr
 14,19,1,Crema agria,14856,17679
 15,19,5,Yogur,14941,17780
 16,19,5,Ternera,29335,34909
-17,19,5,Salmón salvaje,11878,14135
+17,19,5,Salmon salvaje,11878,14135
 18,19,1,Patas de cangrejo,29951,35642
+19,19,3,Pechuga pollo campesino,11998,14278
+20,19,5,Chuleta de cerdo 500g,8310,9889
+21,19,1,Muslo x5 blanco,8235,9800
+22,19,1,Carne pulpa de cerdo bandeja,6563,7810
+23,19,3,Pierna entera con piel 500g,4067,4840
+24,19,3,Pollo entero campesino x2500g,19926,23716
+25,19,5,Medio pollo campesino,11008,13100
+26,19,3,Pernil con piel pack,11176,13300
+27,19,3,contramuslo x620g,5673,6752
+28,19,2,Higado de res x500,5536,6589
+29,19,2,Pajarilla de res x400g,1882,1882
+30,19,5,Filete de pechuga x2 und,20151,23980
+31,19,4,Alas dulce miel pollo x500g,8907,10600
+32,19,2,Picanha punto de anca x1.5Kg,77619,92367
+33,19,2,Chuck Eye roll,42927,42927
+34,19,2,Carne molida de res x1800g,23142,27540
+35,19,1,Pernil sin piel pack,38352,45640
+36,19,2,Moliexpress x450g,3277,3900
+37,19,1,Recorte de pechuga x1800g,6386,7600
+38,19,5,Contramuslo x2290g,23025,27400
+39,19,1,Tomate chonto x500g,1377,1639
+40,19,4,Pepino cohombro x500g,1284,1529
+41,19,3,Pimenton x500g,2079,2475
+42,19,2,Lechuga crespa x180g,1336,1590
+43,19,4,Colifor x500g,3025,2542
+44,19,4,Champinon x250g,5201,6190
+45,19,4,Calabacin x500g,2495,2910
+46,19,2,Arveja cascara x500g,4057,4829
+47,19,4,Mazorca x500g,3466,4125
+48,19,4,Papa pastusa x2500g,7899,9400
+49,19,1,Arandanos x200g,8773,10440
+50,19,1,Semillas de ajonjoli,5236,6232
+51,19,4,Muez de brasil x150g,9579,11400
+52,19,1,Semillas de chia x150g,4470,5320
+53,19,1,Maiz tostado x150g,4000,4760
+54,19,1,Almendra entera x150g,12403,14760
+55,19,5,Mani natural x250g,5008,5960
+56,19,3,Maiz BBQ x150g,4026,4792
+57,19,5,Semillas de linaza x250g,4900,5832
+58,19,4,Habas tostadas x150g,4699,5592
+59,19,5,Poinsettia grande,16722,19900
+60,19,4,Pulpa de mango x250g,2700,3213
+61,19,2,Pulpa de mora x250g,2700,3213
+62,19,5,Pulpa de mandaria x250g,2700,3213
+63,19,2,Pulpa de lulo x250g,2700,3213
+64,19,5,Pulpa de guanabana x250,2700,3213
+65,19,4,Pulpa de fresa x250,2700,3213
+66,19,4,Pulpa de fresa x300,3268,3890
+67,19,1,Pulpa de Tamarindo x500g,7890,9390
 

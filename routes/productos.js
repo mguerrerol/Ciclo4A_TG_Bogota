@@ -40,5 +40,4 @@ router.post('/productos/modificar', productosController.modificar)
 //mapping eliminar productos
 router.get('/productos/eliminar/:_id', productosController.eliminar)
 
-
 module.exports = router

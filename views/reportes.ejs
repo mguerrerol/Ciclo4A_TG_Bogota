@@ -73,7 +73,7 @@
       </form>
 
       <div id="clientes">
-      <table id="tablaClientes" class="table mt-6">
+      <table id="tablaClientes" class="display">
         <thead>
           <tr>
             <th>Cedula</th>
@@ -98,7 +98,7 @@
     </div>
 
     <div id="ventas">
-      <table id="tablaVentas" class="table mt-6">
+      <table id="tablaVentas" class="display">
         <thead>
           <tr>
             <th>Cedula</th>
@@ -107,8 +107,38 @@
           </tr>
         </thead>
         <tbody>
+          <% txtTotalVentas = 0;
+          ventas.forEach((venta) => {%>
+				  <tr>
+					  <td>
+              <%=venta.cedula_cliente_ventas%>
+            </td>
+						<td>
+              <% clientes.forEach((cliente) => {
+                if (cliente._id == venta.cedula_cliente_ventas)
+                {%>
+                  <%=cliente.nombre_clientes%>
+                <%}
+               })%>
+            </td>
+            <td>
+              <%=venta.total_venta_ventas%>
+            </td>
+					</tr>
+          <%txtTotalVentas = txtTotalVentas + venta.total_venta_ventas;
+          })%>
         </tbody>
       </table>
+      <div class="container">
+        <div class="row">
+          <div class="col-4" style="text-align:right">
+            <h1><span class="badge bg-success">VENTAS TOTALES</span></h1>
+          </div>
+          <div class="col-8">
+            <input type="text" name="txtTotalVentas" id="txtTotalVentas" value="<%=txtTotalVentas%>" maxlength="40" size="40" disabled>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
