@@ -7,8 +7,11 @@ const ventasSchema = new Schema({
     cedula_cliente_ventas: String,
     detalle_ventas:[{ 
         _id:String,
+        codigo_venta_ventas:Number,
         cantidad_producto_detalle_ventas: Number,
-        codigo_producto_detalle_ventas: String,
+        codigo_producto_detalle_ventas: Number,
+        nombre_producto_detalle_ventas: String,
+        valor_producto_detalle_venta: Number,
         valor_total_detalle_ventas: Number,
         valor_venta_detalle_ventas: Number,
         valoriva_detalle_ventas: Number   
@@ -19,4 +22,3 @@ const ventasSchema = new Schema({
 }, {versionKey:false})
 
 module.exports = mongoose.model('db_ventas',ventasSchema)
-

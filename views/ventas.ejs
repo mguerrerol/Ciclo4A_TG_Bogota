@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="CSS/style.css">
@@ -59,80 +61,175 @@
       </figure>
 
       <div id="body">	
-        <div class="container">
-          <div class="row-cols-auto">
-            <div class="col-6 col-md-4">
-              <label class="form-label" for="txtcedula_cliente_ventas">Cedula Cliente</label>
-            </div>
-            <div class="col-6 col-md-4">
-              <input class="form-control" type="number" name="txtcodigo_venta_ventas" id="txtcodigo_venta_ventas" maxlength="20" required>
-            </div>
-            <div class="col-6 col-md-4">
-              <button type="submit" class="w-100 btn btn-crear btn-lg"><i class="bi bi-search"></i> Consultar Cliente</button>
-            </div>
-          </div>
-
-        </div>
-        <form action="/ventas/cedulacliente/" method="POST">
-
-          <div>
-            <label class="form-label" for="txtcodigo_venta_ventas">Codigo Venta</label>
-            <input class="form-control" type="number" name="txtcodigo_venta_ventas" id="txtcodigo_venta_ventas" maxlength="20" required>
-          </div>
-
-          <div>
-            <label class="form-label" for="txtcedula_cliente_ventas">Cedula cliente</label>
-            <input class="form-control" type="number" name="txtcedula_cliente_ventas" id="txtcedula_cliente_ventas" maxlength="50">
-          </div>
-          
-          <div>
-          <label class="form-label" for="txtcantidad_producto_detalle_ventas">cantidad de producto</label> 
-          <input class="form-control" type="number" name="txtcantidad_producto_detalle_ventas" id="txtcantidad_producto_detalle_ventas" maxlength="20" >
-          </div>
-          
-          <div>
-            <label class="form-label" for="txtcodigo_producto_detalle_ventas">codigo producto</label>
-            <input class="form-control" type="number" name="txtcodigo_producto_detalle_ventas" id="txtcodigo_producto_detalle_ventas"	maxlength="50">
-          </div>
-
-          <div>
-            <label class="form-label" for="txtvalor_total_detalle_ventas">valor total detalle venta</label>
-            <input class="form-control" type="number" name="txtvalor_total_detalle_ventas" id="txtvalor_total_detalle_ventas" maxlength="50">
-          </div>
-          
-          <div>
-            <label class="form-label" for="txtvalor_venta_detalle_ventas">valor venta detalle venta</label>
-            <input class="form-control" type="number" name="txtvalor_venta_detalle_ventas" id="txtvalor_venta_detalle_ventas" maxlength="50">
-          </div>
-        
-          <div>
-            <label class="form-label" for="txtvaloriva_detalle_ventas">valor iva detalle venta</label>
-            <input class="form-control" type="number" name="txtvaloriva_detalle_ventas" id="txtvaloriva_detalle_ventas" maxlength="50">
-          </div>
-
-          <div>
-            <label class="form-label" for="txtivaventas_ventas">Iva venta</label>
-            <input class="form-control" type="number" name="txtivaventas_ventas" id="txtivaventas_ventas" maxlength="50">
-          </div>
-
-          <div>
-            <label class="form-label" for="txttotal_venta_ventas">Total venta</label>
-            <input class="form-control" type="number" name="txttotal_venta_ventas" id="txttotal_venta_ventas" maxlength="50">
-          </div>
-
-          <div>
-            <label class="form-label" for="txtvalor_venta_ventas">Valor venta</label>
-            <input class="form-control" type="number" name="txtvalor_venta_ventas" id="txtvalor_venta_ventas" maxlength="50">
-          </div>
-
-      </div> 
-        <button type="submit" class="w-100 btn btn-crear btn-lg"><i class="bi bi-save"></i>Registrar Venta</button>
-
-      </div>
-    </div>
-  </div>
        
+        <form id="form_datos" action="/ventas" method="POST">
+
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td>
+                  <h5><label class="form-label" for="txtcedula_cliente_ventas">Cedula Cliente</label></h5>
+                </td>
+                <td>
+                  <input class="form-control" type="number" name="txtcedula_cliente_ventas" id="txtcedula_cliente_ventas" maxlength="50" value="<%=txtCedula%>" min="1" pattern="[0-9]+" required>
+                </td>
+                <td rowspan="3">
+                  <button type="submit" class="w-100 btn btn-crear btn-lg"><i class="bi bi-save"></i> Registrar Producto</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <h5><label class="form-label" for="txtcodigo_producto_detalle_ventas">Codigo Producto</label></h5>
+                </td>
+                <td>
+                  <input class="form-control" type="number" name="txtcodigo_producto_detalle_ventas" id="txtcodigo_producto_detalle_ventas"	maxlength="50" required>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <h5><label class="form-label" for="txtcantidad_producto_detalle_ventas">Cantidad de Producto</label></h5>
+                </td>
+                <td>
+                  <input class="form-control" type="number" name="txtcantidad_producto_detalle_ventas" id="txtcantidad_producto_detalle_ventas" maxlength="20" min="1" pattern="[0-9]+" required>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+
+        <form id="form_factura" action="/ventas/registrar" method="post">
+          <input type="hidden" name="txtcedula"  id="txtcedula" value="<%=txtCedula%>"> 
+          <div class="progress" style="height: 5px;">
+            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td>
+                  <h5><label class="form-label">Cedula</label></h5>
+                  
+                </td>
+                <td>
+                  <h5><label class="form-label"><%=txtCedula%></label></h5>
+                  <!-- <input class="form-control" type="number" name="txtCedula_factura" id="txtcedula_factura" maxlength="50" value="<%=txtCedula%>" disabled> -->
+                </td>
+                <td>
+                  <h5><label class="form-label"><%=txtNombreCliente%></label></h5>
+                  <!-- <input class="form-control" type="text" name="txtNombre_factura" id="txtnombrefactura" maxlength="50" value="<%=txtNombreCliente%>"disabled> -->
+                </td>
+                <td>
+                  <h5><label class="form-label" for="txtcantidad_producto_detalle_ventas">Factura numero</label></h5>
+                </td>
+                <td>
+                  <h5><label class="form-label" for="txtcantidad_producto_detalle_ventas" id="txtConsecutivo" name="txtConsecutivo" value="<%=txtConsecutivo%>"><%=txtConsecutivo%></label></h5> 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+       
+       
+          <div class="progress" style="height: 5px;">
+            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+ 
+          <div>
+            <table id="tablaVentas" class="display" style="text-align: center;">
+              <thead>
+                <tr>
+                  <th>Codigo Producto</th>
+                  <th>Nombre del Producto</th>
+                  <th>Cantidad de Producto</th>
+                  <th>Valor del producto</th>
+                  <th>Total sin IVA</th>
+                  <th>Valor del IVA</th>
+                  <th>Total con IVA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%detalles.forEach((detalle) => {%>  
+                  <tr>
+                    <th><%=detalle.codigo_producto_detalle_ventas%></th>
+                    <td><%=detalle.nombre_producto_detalle_ventas%></td>
+                    <td><%=detalle.cantidad_producto_detalle_ventas%></td>
+                    <td>$ <%=detalle.valor_producto_detalle_ventas%></td>
+                    <td>$ <%=detalle.valor_venta_detalle_ventas%></td>
+                    <td>$ <%=detalle.valoriva_detalle_ventas%></td>
+                    <td>$ <%=detalle.valor_total_detalle_ventas%></td>
+                  </tr>
+                  <% })%>        
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <div class="progress" style="height: 5px;">
+                  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <tr>
+                  <td>
+                    <h5><label class="form-label">Total Venta sin IVA   </label></h5> 
+                  </td>
+                  <td>
+                    <h5><label class="form-label">$ <%=totalparcial%></label></h5> 
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h5><label class="form-label">Total Valor IVA   </label></h5> 
+                  </td>
+                  <td>
+                    <h5><label class="form-label">$ <%=totaliva%></label></h5> 
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h5><label class="form-label">Total Venta con IVA   </label></h5> 
+                  </td>
+                  <td>
+                    <h5><label class="form-label">$ <%=totalfinal%></label></h5> 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="submit" class="w-100 btn btn-crear btn-lg" onclick="confirmar(<%=totalfinal%>)"><i class="bi bi-save"></i> Registrar Venta</button>
+            <div class="progress" style="height: 5px;">
+              <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div> 
+     </body>
     <script type="text/javascript">document.oncontextmenu = function(){return false;}</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="js/codeventas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
+   
+    </script> 
+    <script >
+      $(document).ready(function() {
+      $('#tablaVentas').DataTable({
+          "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "lengthMenu": "Muestra _MENU_ registros por pagina",
+            "zeroRecords": "No se han registrado aun productos",
+            "info": "Mostrando Pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros en la tabla",
+            "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+            "search": "Buscar: ",
+            "paginate": {
+            "next": "Siguiente Pagina",
+            "previous": "Pagina Anterior"
+          }
+        }
+      });
+    });
+    </script>
+  
   </body>
 </html>

@@ -11,7 +11,7 @@ _id,ivacompra_productos,nitproveedor_productos,nombre_productos,precio_compra_pr
 10,19,5,Leche,21150,25169
 11,19,5,Queso,26571,31619
 12,19,2,Huevos,12445,14810
-13,19,1,Requesón,14329,17052
+13,19,1,Requeson,14329,17052
 14,19,1,Crema agria,14856,17679
 15,19,5,Yogur,14941,17780
 16,19,5,Ternera,29335,34909
@@ -66,4 +66,3 @@ _id,ivacompra_productos,nitproveedor_productos,nombre_productos,precio_compra_pr
 65,19,4,Pulpa de fresa x250,2700,3213
 66,19,4,Pulpa de fresa x300,3268,3890
 67,19,1,Pulpa de Tamarindo x500g,7890,9390
-

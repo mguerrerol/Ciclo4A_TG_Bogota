@@ -107,31 +107,31 @@
               <tr>
                 <td>
                   <label class="form-label" for="txtCodigo">Codigo Producto</label>
-                  <input class="form-control" type="number" name="txtCodigo" id="txtCodigo" maxlength="20" required>
+                  <input class="form-control" type="number" name="txtCodigo" id="txtCodigo" maxlength="20" min="1" pattern="[0-9]+" required>
                 </td>
                 <td>
                   <label class="form-label" for="txtCompra">Precio de Compra</label>
-                  <input class="form-control" type="number" name="txtCompra" id="txtCompra"	maxlength="50">
+                  <input class="form-control" type="number" name="txtCompra" id="txtCompra"	maxlength="50" min="1" pattern="[0-9]+" required>
                 </td>
               </tr>  
               <tr>
                 <td>
                   <label class="form-label" for="txtNombre">Nombre del Producto</label>
-                  <input class="form-control" type="text" name="txtNombre" id="txtNombre" maxlength="50">
+                  <input class="form-control" type="text" name="txtNombre" id="txtNombre" maxlength="50" required>
                 </td>
                 <td>
                   <label class="form-label" for="txtIVA">IVA Compra</label> 
-                  <input class="form-control" type="number" name="txtIVA" id="txtIVA" maxlength="20" >
+                  <input class="form-control" type="number" name="txtIVA" id="txtIVA" maxlength="20" min="1" pattern="[0-9]+" required>
                 </td>
               </tr>  
               <tr>
                 <td>
                   <label class="form-label" for="txtNIT">NIT Proveedor</label>
-                  <input class="form-control" type="number" name="txtNIT" id="txtNIT" maxlength="50">
+                  <input class="form-control" type="number" name="txtNIT" id="txtNIT" min="1" pattern="[0-9]+" maxlength="50" required>
                 </td>
                 <td>
                   <label class="form-label" for="txtVenta">Precio Venta</label>
-                  <input class="form-control" type="number" name="txtVenta" id="txtVenta" maxlength="50">
+                  <input class="form-control" type="number" name="txtVenta" id="txtVenta" min="1" pattern="[0-9]+" maxlength="50" required>
                 </td>
               </tr> 
             </table>          
