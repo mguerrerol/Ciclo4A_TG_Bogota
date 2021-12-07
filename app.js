@@ -1,10 +1,13 @@
-const path=require('path');
+const path = require('path');
 const express = require('express')
 const db = require('./db')
-const app = express()
-const morgan=require('morgan')
+// const morgan=require('morgan')
+// const session = require('express-session')
+// const flash = require('connect-flash')
 
 //app.use(morgan('app'))
+
+const app = express()
 
 app.set('views', __dirname + '\\views');
 app.set('view engine', 'ejs')
@@ -28,6 +31,9 @@ app.use(ventas)
 
 const consolidados = require('./routes/consolidados')
 app.use(consolidados)
+
+const factura = require('./routes/factura')
+app.use(factura)
 
 const login = require('./routes/login')
 app.use(login)

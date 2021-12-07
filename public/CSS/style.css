@@ -244,7 +244,26 @@ input[type=submit].btnSalir:hover {
     transition: all .9s ease;
 }
    
+input[type=submit].btnImprimir {
+    background-image: url("../IMG/imprimir.png");
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s;
+    width: 100%;
+    height: 85px;
+    padding: 0px;
+    margin-top:10px;
+    margin-left:5px;
+    margin-right:5px;
+}
    
+input[type=submit].btnImprimir:hover {
+    width: 106%;
+    transition: all .9s ease;
+}
+   
+
+
 input[type=submit].btnCargar {
     background-image: url("../IMG/cargar.png");
     background-size: cover;

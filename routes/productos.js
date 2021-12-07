@@ -6,18 +6,9 @@ const mimeTypes = require('mime-types')
 const storage = multer.diskStorage({
     destination:'controllers/',
     filename:(req,file,cb)=>{
-        //cb("","productos_" + Date.now() + "." + mimeTypes.extension(file.mimetype))
         cb("","productos.csv")
     }
 })
-
-/*const storage = multer.diskStorage({
-	destination: 'archivos/',
-	filename: function(req, file, cb){
-		cb("",file.originalname)
-		nombre = file.orginalname
-	}
-})*/
 
 const cargar = multer({
     storage: storage

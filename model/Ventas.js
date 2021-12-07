@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+//var conn = require('../db')
+
 const ventasSchema = new Schema({
     _id:String,
     codigo_venta_ventas:Number,
@@ -22,3 +24,7 @@ const ventasSchema = new Schema({
 }, {versionKey:false})
 
 module.exports = mongoose.model('db_ventas',ventasSchema)
+
+/*let venta = conn.Ciclo4A_BOGOTA.model.('db_ventas',ventasSchema)
+
+module.exports = venta*/

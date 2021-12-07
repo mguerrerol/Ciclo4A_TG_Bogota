@@ -24,6 +24,7 @@ module.exports.crear = (req, res)=>{
         nombre_clientes: req.body.txtNombre,
         telefono_clientes: req.body.txtTelefono
     })
+    
     cliente.save(function(error,cliente){
         if(error){
             return res.status(500).json({

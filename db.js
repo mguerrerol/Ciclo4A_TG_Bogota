@@ -10,3 +10,4 @@ db.once('open',function callback(){
 })
 
 module.exports = db
+

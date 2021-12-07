@@ -1,6 +1,7 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
+  <link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -137,7 +138,7 @@
             </table>          
             </div>
   
-                    <button type="submit" class="w-100 btn btn-crear btn-lg"><i class="bi bi-save"></i> Crear Producto</button>
+                    <button type="submit" class="w-100 btn btn-crear btn-lg"><i class="bi bi-save2"></i> Crear Producto</button>
          
         </form>
     
@@ -159,9 +160,9 @@
               <td><%=producto._id%></td>
               <td><%=producto.nombre_productos%></td>
               <td><%=producto.nitproveedor_productos%></td>
-              <td><%=producto.precio_compra_productos%></td>
-              <td><%=producto.ivacompra_productos%></td>
-              <td><%=producto.precio_venta_productos%></td>
+              <td>$ <%=producto.precio_compra_productos%></td>
+              <td><%=producto.ivacompra_productos%> %</td>
+              <td>$ <%=producto.precio_venta_productos%></td>
               <td>
                 <a type="button" class="btnEditar btn btn-outline-primary bi bi-pencil"></a>
                 <!-- <a href="/productos/eliminar/<%=producto._id%>" onclick="return confirm('¿Esta seguro de querer eliminar el producto?');" class="btn btn-outline-danger bi bi-trash"></a> --> 

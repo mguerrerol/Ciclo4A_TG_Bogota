@@ -1,118 +1,111 @@
-module.exports.cedulacliente = (req, res) => {
-    const txtCedula = req.body.txtcedula_cliente_ventas
-    const txtCodigo = req.body.txtcodigo_producto_detalle_ventas
-    const txtCantidad = req.body.txtcantidad_producto_detalle_ventas
-    var totalfinal = 0//req.body.txttotal_venta_ventas
-    var totalparcial = 0
-    var incrementoiva = 0
-    var totalparcialconiva = 0
-    var txtNombreCliente = "CLIENTE NO EXISTE"
-    var txtNombreProducto = "PRODUCTO NO EXISTE"
-    var txtValorProducto = 0
-    var txtIVAProducto = 0
-    var txtConsecutivo = 0 
-    var valoriva = 0
-   
-    //saca la lista de loc clientes para sacar el nombre
-    Clientes.find({},(error, clientes)=>{
+const Ventas = require('../model/Ventas')
+const Venta = require('../model/Ventas')
+const Consolidados = require('../model/Consolidados')
+const Consolidado = require('../model/Consolidados')
+const db = require('../db')
+
+//cargar pagina login
+module.exports.cargar = (req, res)=>{
+    var txtConsecutivo = 0
+    var consolidado_bogota = 0
+    Consolidados.find({},(error, consolidados)=>{
         if(error){
             return res.status(500).json({
-                message: 'Error al buscar el cliente'
+                message: 'Error mostrando los consolidados'
             })
         }
-        //console.log(clientes)
-        clientes.forEach((cliente) => {
-            if (cliente._id === txtCedula)
+
+        consolidados.forEach((consolidado) => {
+            if (txtConsecutivo < consolidado.id_consolidado )
             {
-                txtNombreCliente = cliente.nombre_clientes        
+                txtConsecutivo = consolidado.id_consolidado       
             }
         })
-        
-            //calcula el consecutivo
-            Ventas.find({},(error, ventas)=>{
+        txtConsecutivo += 1
+
+            Venta.find({},(error, ventas)=>{
                 if(error){
                     return res.status(500).json({
-                    message: 'Error al buscar las ventas'
+                        message: 'Error mostrando las ventas'
                     })
                 }
-                //console.log(ventas)
+                //return console.log(ventas)
+                
                 ventas.forEach((venta) => {
-                    if (txtConsecutivo < venta.codigo_venta_ventas )
-                    {
-                        txtConsecutivo = venta.codigo_venta_ventas       
-                    }
+                    consolidado_bogota += venta.total_venta_ventas
                 })
-                txtConsecutivo += 1
 
-                    //Saca la lista de los productos para sacar el valor, nombre, IVA
-                    Productos.find({},(error, productos)=>{
-                        if(error){
-                            return res.status(500).json({
-                            message: 'Error mostrando los productos'
-                            })
+                const consolidadoBogota = new Consolidados({
+                    id_consolidado:txtConsecutivo,
+                    ciudad_consolidado:Bogota,
+                    ventas_consolidado: consolidado_bogota,
+                })
+
+                const collectionName = 'db_consolidados'
+                var collection = db.collection(collectionName)
+                collection.insertOne(consolidadoBogota, (err, result) => {
+                if (err) console.log(err){
+
+
+                    if(result){
+                        console.log('grabo lo datos de forma existosa')
                         }
-                        //console.log(productos)
-                        productos.forEach((producto) => {
-                            if (txtCodigo  === producto._id)
-                            {
-                                txtNombreProducto = producto.nombre_productos
-                                txtValorProducto = producto.precio_venta_productos
-                                txtIVAProducto = producto.ivacompra_productos
-                            }
-                        })
-        
-                        totalparcial = txtCantidad * txtValorProducto
-                        incrementoiva = totalparcial * (txtIVAProducto / 100)
-                        totalparcialconiva = totalparcial + incrementoiva
-                        valoriva = totalparcialconiva - totalparcial
-                        totalfinal += totalparcialconiva
+                
+                        Consolidado.find({},(error, consolidados)=>{
+                            if(error){
+                                return res.status(500).json({
+                                    message: 'Error mostrando los clientes'
+                            })
+                          
+                            return res.render('consolidados',{consolidados: consolidados})
+                        })        
+                    })
+            })   
+    })
+}
 
-                        const detalleventa = new DetalleVentas({
-                            codigo_venta_ventas:txtConsecutivo,
-                            cantidad_producto_detalle_ventas:txtCantidad,
-                            codigo_producto_detalle_ventas:txtCodigo,
-                            valor_total_detalle_ventas:totalparcialconiva,
-                            valor_venta_detalle_ventas:totalparcial,
-                            valoriva_detalle_ventas:valoriva
-                        })
+module.exports.cargar = (req, res)=>{
+    var idconsolidado = 0
+    var consolidado_bogota = 0
+    Consolidado.find({},(error, consolidados)=>{
+        if(error){
+            return res.status(500).json({
+                message: 'Error mostrando los consolidados'
+            })
+        }
+        consolidados.forEach((consolidado) => {
+            if (idconsolidado < consolidado.id_consolidado )
+            {
+                idconsolidado = consolidado.id_consolidado       
+            }
+        }) // cierra el foreach anterior que calcula el id del consolidado
+        idconsolidado += 1
+            Venta.find({},(error, ventas)=>{
+                if(error){
+                    return res.status(500).json({
+                        message: 'Error mostrando las ventas'
+                    })
+                }
+                ventas.forEach((venta) => {
+                    consolidado_bogota += venta.total_venta_ventas
+                }) //cierra el foreach anterior que calcula el consolidado de Bogota
 
-                        const collectionName = 'db_detalleventas'
-                        var collection = db.collection(collectionName)
-                        collection.insertOne(detalleventa, (err, result) => {
-                            if (err) console.log(err)
+                const consolidadoBogota = new Consolidados({
+                    id_consolidado:txtConsecutivo,
+                    ciudad_consolidado:Bogota,
+                    ventas_consolidado: consolidado_bogota,
+                }) // cierra el objeto de tipo consolidado de la ciudad de bogota
+
+                    const collectionName = 'db_consolidados'
+                    var collection = db.collection(collectionName)
+                    collection.insertOne(consolidadoBogota, (err, result) => {
+                        if (err) console.log(err)
                             if(result){
                                 console.log('grabo lo datos de forma existosa')
                             }
-                        })
-
-                        DetalleVentas.find({},(error, detalleventas)=>{
-                            if(error){
-                                return res.status(500).json({
-                                message: 'Error mostrando los detalle ventas'
-                                })
-                            }
-                            //console.log(detalleventas)
-                        
-                            console.log(detalleventa)
-                            console.log(detalleventas)
-                            console.log('cedula del cliente del front: ' + txtCedula)
-                            console.log('codigo del producto del front: ' + txtCodigo)
-                            console.log('cantidad de producto del front: ' + txtCantidad)
-                            console.log('nombre del cliente: ' + txtNombreCliente)
-                            console.log('total parcial sin iva: ' + totalparcial)
-                            console.log('nombre del producto: ' + txtNombreProducto)
-                            console.log('precio del producto: ' + txtValorProducto)
-                            console.log('iva del producto: ' + txtIVAProducto)
-                            console.log('iva parcial: ' + incrementoiva)
-                            console.log('total parcial con iva: ' + totalparcialconiva)
-                            console.log('total final: ' + totalfinal) 
-                            console.log('consecutivo: ' + txtConsecutivo)
-                            return res.render('ventas',{txtCedula,txtCodigo,txtCantidad,txtNombreCliente,
-                            totalparcial,txtNombreProducto,txtValorProducto,txtIVAProducto,txtIVAProducto,
-                            incrementoiva,totalparcialconiva,totalfinal,txtConsecutivo, 
-                            detalleventas:detalleventas})
-                        })    
-                    })
-            })
-    }) 
+                                                    
+                        return res.render('consolidados',{consolidado_bogota})
+                    })//cierra la funcion que graba el objeto en la base de datos
+            }) // cierra la funcion de la segunda lista de ventas para calcular el consolidado de bogota
+    }) // cierra la funcion de la primera lista de consolidados para hacer el consecutivo
 }
